@@ -184,13 +184,15 @@ def welcome_page(state: State, username: str, character: str) -> Page:
     state.username = username
     state.character = character
     return Page(state, [
-        Text("Begin Quiz App", font_size="14px", font_weight="bold"),
-        Text("Welcome " + state.username + " !"),
+        Text("Begin Quiz App", font_size="14px", font_weight="bold",
+             display="block"),
+        Text("Welcome " + state.username + " !", display="block"),
         Text(
             "This is a short trivia quiz "
-            "that you can take and see your score at the end. Good Luck!"
+            "that you can take and see your score at the end. Good Luck!",
+            display="block"
         ),
-        Text(" "),
+        Text(" ", display="block"),
         Button("▶️ Start Quiz", start_quiz_direct),
         Button("🎯 Saved Scores", score_page),
         Button("ℹ️ About", about_page)
