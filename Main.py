@@ -155,7 +155,7 @@ def index(state: State) -> Page:
 return Page(state, [
 Header("🧠 Quiz App"),
 Text(
-"Welcome! This is a short trivia quiz"
+"Welcome! This is a short trivia quiz "
 "that you can take and see your score at the end. Good Luck!"
 ),
 Button("▶️ Start Quiz", start_quiz),
