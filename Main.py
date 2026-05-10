@@ -21,6 +21,7 @@ set_site_information(
     ["https://ud-s26-cs1.github.io/cs1-website-s26-pyashu-rgb/"],
 )
 hide_debug_information()
+set_website_title("Quiz App")
 
 
 @dataclass
