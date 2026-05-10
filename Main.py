@@ -153,7 +153,7 @@ def index(state: State) -> Page:
         A page with navigation buttons for the quiz website.
     """
     return Page(state, [
-        Header("Begin Quiz App", font_size="14px"),
+        Text("Begin Quiz App", font_size="14px", font_weight="bold"),
         Text(
             "Welcome! This is a short trivia quiz "
             "that you can take and see your score at the end. Good Luck!"
