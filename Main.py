@@ -144,24 +144,75 @@ def score_message(score: int) -> str:
 @route
 def index(state: State) -> Page:
     """
-    Show the home page.
+    Show the landing page with name and character selection.
 
     Args:
         state: The current state of the quiz app.
 
     Returns:
-        A page with navigation buttons for the quiz website.
+        A page with name input and character dropdown.
     """
     return Page(state, [
+        Header("Welcome to Quiz Application"),
+        Text("Enter your name:"),
+        TextBox("username", state.username),
+        Text("Select a character:"),
+        SelectBox("character", ["Cat", "Dog", "Duck"]),
+        Button("Continue", welcome_page)
+    ])
+
+
+@route
+def welcome_page(state: State, username: str, character: str) -> Page:
+    """
+    Show the welcome page after the user enters their name and character.
+
+    Args:
+        state: The current state of the quiz app.
+        username: The name entered by the user.
+        character: The character selected by the user.
+
+    Returns:
+        A page with welcome message and navigation buttons.
+    """
+    if username == "":
+        return Page(state, [
+            Header("Name Required"),
+            Text("Please enter your name before continuing."),
+            Button("Back", index)
+        ])
+    state.username = username
+    state.character = character
+    return Page(state, [
         Text("Begin Quiz App", font_size="14px", font_weight="bold"),
+        Text("Welcome " + state.username + " !"),
         Text(
-            "Welcome! This is a short trivia quiz "
+            "This is a short trivia quiz "
             "that you can take and see your score at the end. Good Luck!"
         ),
-        Button("▶️ Start Quiz", start_quiz),
+        Text(" "),
+        Button("▶️ Start Quiz", start_quiz_direct),
         Button("🎯 Saved Scores", score_page),
         Button("ℹ️ About", about_page)
     ])
+
+
+@route
+def start_quiz_direct(state: State) -> Page:
+    """
+    Start the quiz using the previously captured name and character.
+
+    Args:
+        state: The current state of the quiz app.
+
+    Returns:
+        The first quiz question page.
+    """
+    state.score = 0
+    state.answered_questions = []
+    state.current_question = 0
+    state.feedback = ""
+    return question_page(state)
 
 @route
 def start_quiz(state: State) -> Page:
