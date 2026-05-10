@@ -21,7 +21,7 @@ set_site_information(
     ["https://ud-s26-cs1.github.io/cs1-website-s26-pyashu-rgb/"],
 )
 hide_debug_information()
-set_website_title("Quiz App")
+set_website_title("Quiz Application")
 
 
 @dataclass
@@ -153,7 +153,7 @@ def index(state: State) -> Page:
         A page with navigation buttons for the quiz website.
     """
     return Page(state, [
-        Header("🧠 Quiz App"),
+        Header("Begin Quiz App", font_size="14px"),
         Text(
             "Welcome! This is a short trivia quiz "
             "that you can take and see your score at the end. Good Luck!"
